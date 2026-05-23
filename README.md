@@ -24,17 +24,53 @@ You can browse Zoldar's inventory, haggle over prices, and when a deal is struck
 
 ## 🎮 How It Works
 
-User chats → AI merchant responds in character
-↓
-User haggles → Server validates price range, updates negotiation state
-↓
-User confirms deal → Wallet prompt to send HBAR
-↓
-Payment verified via Hedera Mirror Node
-↓
-NFT minted → transferred to user's wallet
-↓
-Serial number + HashScan receipt returned
+```
+┌─────────────────────────────────────────────────────┐
+│                  ZOLDAR'S EMPORIUM                  │
+└─────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────┐
+│  User sends message │
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────────────────┐
+│  AI Merchant responds           │
+│  in character as Zoldar         │
+└─────────┬───────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────┐
+│  User haggles / offers price    │
+│  Server validates price range   │
+│  & updates negotiation state    │
+└─────────┬───────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────┐
+│  User confirms deal             │
+│  → Wallet prompt to send HBAR   │
+└─────────┬───────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────┐
+│  Payment verified via           │
+│  Hedera Mirror Node             │
+└─────────┬───────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────┐
+│  NFT minted + transferred       │
+│  to user's wallet               │
+└─────────┬───────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────┐
+│  Serial number + HashScan       │
+│  receipt returned to UI         │
+└─────────────────────────────────┘
+```
 
 ### Real On-Chain Actions
 | Action | Hedera Operation |
