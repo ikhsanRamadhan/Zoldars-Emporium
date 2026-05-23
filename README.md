@@ -4,7 +4,7 @@
 
 An AI-powered RPG merchant chatbot built on the Hedera blockchain. Negotiate with Zoldar, haggle over prices, and receive real NFTs directly to your wallet — all on Hedera Testnet.
 
-[![Demo Video](https://img.shields.io/badge/Demo-Watch%20on%20X-black?logo=x)]([X_DEMO_LINK](https://x.com/Ikhsan_dadan/status/2058167335090085915))
+[![Demo Video](https://img.shields.io/badge/Demo-Watch%20on%20X-black?logo=x)](https://x.com/Ikhsan_dadan/status/2058167335090085915)
 [![Hedera Testnet](https://img.shields.io/badge/Network-Hedera%20Testnet-6B3FA0)](https://hashscan.io/testnet)
 [![Next.js](https://img.shields.io/badge/Built%20with-Next.js%2015-black?logo=next.js)](https://nextjs.org)
 
