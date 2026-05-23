@@ -107,7 +107,6 @@ export default function MerchantPage() {
       });
   
       const data = await res.json();
-      console.log('response', data);
 
       let updatedNegotiation = negotiationState;
       if ('negotiationState' in data) {
@@ -148,7 +147,7 @@ export default function MerchantPage() {
             .setTokenIds([data.tokenId]);
         
         const assocRes = await (await associateTx.executeWithSigner(signer)).getReceiptWithSigner(signer);
-        console.log('assocRes', assocRes.status.toString());
+
         if (assocRes.status.toString() !== "SUCCESS") {
           setMessages((prev) => [...prev, {
             id: crypto.randomUUID(),
@@ -178,7 +177,6 @@ export default function MerchantPage() {
       }
   
     } catch (error) {
-      console.error(error);
       const errMsg: Message = {
         id: crypto.randomUUID(),
         role: "system",
