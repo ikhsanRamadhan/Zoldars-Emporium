@@ -24,7 +24,7 @@ const network = LedgerId.fromString(env);
 export const appMetadata = {
     name: "Zoldar's Emporium",
     description: "Mystical NPC Merchant",
-    url: typeof window !== 'undefined' ? window.location.origin : "https://yourdomain.com",
+    url: typeof window !== 'undefined' ? window.location.origin : "https://zoldars-emporium.vercel.app/",
     icons: ["https://wallet.hashinals.com/favicon.ico"],
 };
 
