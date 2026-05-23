@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧙 Zoldar's Emporium — AI RPG Merchant on Hedera
 
-## Getting Started
+> *"Ah, a wanderer approaches! Welcome to Zoldar's Emporium of Mystical Wares!"*
 
-First, run the development server:
+An AI-powered RPG merchant chatbot built on the Hedera blockchain. Negotiate with Zoldar, haggle over prices, and receive real NFTs directly to your wallet — all on Hedera Testnet.
+
+[![Demo Video](https://img.shields.io/badge/Demo-Watch%20on%20X-black?logo=x)](YOUR_X_DEMO_LINK)
+[![Hedera Testnet](https://img.shields.io/badge/Network-Hedera%20Testnet-6B3FA0)](https://hashscan.io/testnet)
+[![Next.js](https://img.shields.io/badge/Built%20with-Next.js%2015-black?logo=next.js)](https://nextjs.org)
+
+---
+
+## ✨ What is This?
+
+Zoldar's Emporium is a fully on-chain RPG merchant experience powered by:
+- **Google Gemini** as the AI brain behind Zoldar's dramatic personality
+- **Hedera Agent Kit** for all blockchain operations (mint, transfer, verify)
+- **HashConnect** for wallet integration
+- **Next.js** as the full-stack framework
+
+You can browse Zoldar's inventory, haggle over prices, and when a deal is struck — pay in HBAR and receive a real NFT minted and transferred to your wallet, all on-chain.
+
+---
+
+## 🎮 How It Works
+
+User chats → AI merchant responds in character
+↓
+User haggles → Server validates price range, updates negotiation state
+↓
+User confirms deal → Wallet prompt to send HBAR
+↓
+Payment verified via Hedera Mirror Node
+↓
+NFT minted → transferred to user's wallet
+↓
+Serial number + HashScan receipt returned
+
+### Real On-Chain Actions
+| Action | Hedera Operation |
+|--------|-----------------|
+| Pay for item | HBAR transfer via `TransferTransaction` |
+| Receive item | NFT mint + `TransferTransaction` (HTS) |
+| Verify payment | Mirror Node REST API query |
+| Token association | `TokenAssociateTransaction` |
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js 15, TypeScript, Tailwind CSS |
+| AI | Google Gemini via Google ADK |
+| Blockchain | Hedera Testnet (HTS, HBAR) |
+| Wallet | HashConnect + `@hashgraph/sdk` |
+| NFT Storage | IPFS via Pinata |
+| Mirror Node | `testnet.mirrornode.hedera.com` |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- A Hedera Testnet account ([create one free](https://portal.hedera.com))
+- A Google Gemini API key ([get one here](https://aistudio.google.com))
+- HashPack wallet browser extension
+
+### Installation
+
+```bash
+git clone https://github.com/YOUR_USERNAME/zoldars-emporium
+cd zoldars-emporium
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file:
+
+```env
+# Hedera operator account (merchant/server account)
+ACCOUNT_ID=0.0.XXXXXXX
+PRIVATE_KEY=your_private_key_here
+
+# Hashinals Project ID
+NEXT_PUBLIC_PROJECT_ID=your-hashinals-project-id
+
+# Token ID for the NFT collection
+NEXT_PUBLIC_TOKEN_ID=0.0.XXXXXXX
+
+# Google Gemini
+GOOGLE_API_KEY=your_gemini_api_key_here
+```
+
+### Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) and connect your HashPack wallet.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧙 Features
 
-## Learn More
+### Intelligent Price Negotiation
+Zoldar has a real server-side negotiation engine — not just AI roleplay. Every offer is validated against a price floor (70% of original), mood system, and attempt counter. The AI responds in character but cannot go below the floor.
 
-To learn more about Next.js, take a look at the following resources:
+Original: 11 HBAR → Minimum: 7.7 HBAR
+User offers 8 HBAR → Server accepts → AI confirms dramatically
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Fuzzy Item Search
+Type "great sword", "health pot", or "shild" — the Levenshtein-based search engine finds the right item even with typos or spacing differences.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Full NFT Purchase Flow
+Connect Wallet → Browse/Haggle → Confirm Deal
+→ Sign HBAR Transfer → Payment Verified on Mirror Node
+→ NFT Minted → Token Associated → NFT Transferred
+→ HashScan Receipt Displayed
 
-## Deploy on Vercel
+### Stateless Architecture
+Negotiation state is passed client → server → client on every request. No server-side session storage, works correctly in serverless environments.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 Project Structure
+### Stateless Architecture
+Negotiation state is passed client → server → client on every request. No server-side session storage, works correctly in serverless environments.
+
+---
+
+## 🔗 Hedera Agent Kit Usage
+
+This project uses the Hedera Agent Kit for:
+
+- **Token minting** — `mintAgent` mints NFTs with IPFS metadata
+- **NFT transfers** — `TransferTransaction` with `NftId`
+- **Payment verification** — Mirror Node API to confirm HBAR received
+- **Token association** — `TokenAssociateTransaction` before NFT delivery
+
+All transactions are verifiable on [HashScan Testnet](https://hashscan.io/testnet).
+
+---
+
+## 🎥 Demo
+
+> Watch the full demo on X: [YOUR_X_DEMO_LINK]
+
+**Demo flow shown:**
+1. Connect HashPack wallet
+2. Browse inventory
+3. Haggle with Zoldar over a Steel Greatsword
+4. Confirm deal at negotiated price
+5. Sign HBAR transfer in HashPack
+6. Receive minted NFT with HashScan receipt
+
+---
+
+## 📄 License
+
+MIT — see [LICENSE](LICENSE)
+
+---
+
+*Built with ⚔️ and HBAR. Now get out of Zoldar's shop before he charges you for the air you breathe.*
