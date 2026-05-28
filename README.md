@@ -183,7 +183,6 @@ All transactions are verifiable on [HashScan Testnet](https://hashscan.io/testne
 
 ## 🎥 Demo
 
-Watch the full demo:
 [![Zoldars-Emporium](https://img.youtube.com/vi/DbNeBuMt2kY/0.jpg)](https://www.youtube.com/watch?v=DbNeBuMt2kY)
 
 **Demo flow shown:**
